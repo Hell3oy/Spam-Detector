@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	  <title>Result</title>
+    
+    <!-- Normal CSS -->
+    <style>
+      ::placeholder {
+        position: relative;
+	      top: 20px;
+	      text-align: center;
+	      font-size: 35px;
+      }
+    </style>
+    
+    <!-- DarkMode CSS -->
+    <style>
+	    [data-theme="dark"] {
+			  background-color : #111 !important;
+			  color            : #eee;
+		  }
+
+      [data-theme="dark"] .bg-light {
+			  background-color : #333 !important;
+		  }
+
+      [data-theme="dark"] .bg-white {
+			  background-color    : #000 !important;
+      }
+
+      [data-theme="dark"] .bg-black {
+			  background-color    : #eee !important;
+      }
+
+      [data-theme="dark"] .shadow12{
+			  background-color : #111 !important;
+			  color            : #eee;
+		  }
+    </style>
+    
+    <!-- Title CSS -->
+    <style>
+      h1{
+        color: rgba(225, 225, 225, .1);
+        background: linear-gradient(90deg, #03a9f4, #f441a4, #ffeb3b, #03a9f4);
+        background-repeat: repeat-x;
+        -webkit-background-clip: text;  
+        animation: titles 1s linear infinite;
+      }
+
+      @keyframes titles {
+        0%{
+          background-position: left 0px top 0px;
+        }
+        40%{
+          background-position: left 500px top 0px;
+        }
+      }
+    </style>
+
+    <!-- Text Blinks CSS -->
+    <style>
+      h2 span{
+        font-size: 130px;
+        color: #333;
+        font-weight: 500;
+      }
+    
+      h2 span{
+        animation: blinks 1s linear infinite;
+      }
+    
+      h2 span:nth-child(1){
+        animation-delay: 0s;
+      }
+    
+      h2 span:nth-child(2){
+        animation-delay: 0.2s;
+      }
+    
+      h2 span:nth-child(3){
+        animation-delay: 0.4s;
+      }
+    
+      h2 span:nth-child(4){
+        animation-delay: 0.6s; 
+      }
+    
+      h2 span:nth-child(5){
+        animation-delay: 0.8s;
+      }
+
+      @keyframes blinks{
+        0%, 80%{
+          color: #333;
+          text-shadow: none;
+        }
+        100%{
+          color: #F0F3F4;
+          text-shadow: 0 0 10px red;
+        }  
+      }
+    </style>
+    
+    <!-- Box Shadows CSS-->
+    <style>
+      .shadow12 {
+        background-color: #F0F3F4;
+      }   
+   
+      .shadow12:before,
+      .shadow12:after {
+        content: '';
+        border-radius: 30px;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background: linear-gradient(45deg,#fb0094, #0000ff, #00ff00, #ffff00, #ff0000,#fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
+        background-size: 400%;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        z-index: -1;
+        animation: shadows 10s linear infinite;
+      }
+   
+      .shadow12:after {
+        filter: blur(30px);
+      }
+   
+      @keyframes shadows{
+        0%{
+          background-position: 0 0;
+        }
+        50%{
+          background-position: 400% 0;
+        }
+        100%{
+          background-position: 0 0;
+        }
+      }
+    </style>  
+  </head>
+
+  <body>
+    <!-- Dark Mode Toogle -->
+    <div class="nav-link " style="position:relative; top: 20px;left: 600px;">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="darkSwitch">
+		    <!--<label class="custom-control-label" for="darkSwitch">Dark Mode</label>-->
+		  </div>
+		  <script >
+			  const darkSwitch=document.getElementById("darkSwitch");function initTheme(){const e=null!==localStorage.getItem("darkSwitch")&&"dark"===localStorage.getItem("darkSwitch");darkSwitch.checked=e,e?document.body.setAttribute("data-theme","dark"):document.body.removeAttribute("data-theme")}function resetTheme(){darkSwitch.checked?(document.body.setAttribute("data-theme","dark"),localStorage.setItem("darkSwitch","dark")):(document.body.removeAttribute("data-theme"),localStorage.removeItem("darkSwitch"))}window.addEventListener("load",()=>{darkSwitch&&(initTheme(),darkSwitch.addEventListener("change",()=>{resetTheme()}))});
+		  </script>
+	  </div>	
+	
+    <!-- Content Box -->
+	  <div class="container col-lg-4 col-md-4 col-sm-6  mt-5 pt-3 pb-3 pl-3 pr-3 shadow12" style="border-radius: 30px; box-shadow: 0px 0px 20px ;" id="shadow">
+		  <div class="pb-3">
+			  <center>
+				  <h1>Spam Detector</h1>
+			  </center>
+      </div>
+            
+      <!-- Results -->
+      <center>
+        <p>
+          Results
+        </p
+        <div class="results">
+          <!-- Prediction SPAM -->
+          {% if prediction == 1%}
+          <h2 id="text-blinks">
+            <span>S</span>
+            <span>P</span>
+            <span>A</span>
+            <span>M</span>
+            <span></span>
+          </h2>
+        
+          <!-- Prediction AM -->
+          {% elif prediction == 0%}
+          <h2>
+            <span>H</span>
+            <span>A</span>
+            <span>M</span>
+            <span></span>
+          </h2>
+			    {% endif %}
+        </div>
+      </center>
+	  </div>
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+	
+	
+	
+
